@@ -11,5 +11,6 @@ workflows:
               only: /^.*$/
           base-revision: main
           mapping: |
-            src/.*  first_condition true
+            .*\.md           first_condition true
+            .*\.(?!md).*$    first_condition false
           config-path: .circleci/workflows.yml
