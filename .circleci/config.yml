@@ -13,4 +13,5 @@ workflows:
           mapping: |
             src/.*  first_condition true
             .*      second_condition true
+            .*      second_condition false
           config-path: .circleci/workflows.yml
