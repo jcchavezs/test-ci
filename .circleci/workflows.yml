@@ -38,8 +38,6 @@ workflows:
           filters:
             tags:
               only: /^.*$/
-            branches:
-              ignore: /.*/
       - echo_a:
           <<: *filters-always
           requires:
