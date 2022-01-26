@@ -12,4 +12,5 @@ workflows:
           base-revision: main
           mapping: |
             src/.*  first_condition true
+            docs/.* first_condition true
           config-path: .circleci/workflows.yml
