@@ -8,6 +8,6 @@ workflows:
       - path-filtering/filter:
           base-revision: master
           mapping: |
-            .*\.md        first_condition true
-            .*\.(?!md).*$ first_condition false
+            .*\.md1        first_condition true
+            .*\.md2        first_condition false
           config-path: .circleci/workflows.yml

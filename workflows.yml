@@ -14,7 +14,9 @@ workflows:
       - sanity: &filters-always
           filters:
             tags:
-              only: /.*/
+              only: /^.*$/
+            branches:
+              ignore: /.*/
       - echo_a:
           <<: *filters-always
           requires:
@@ -24,11 +26,9 @@ workflows:
     when:
       not: << pipeline.parameters.first_condition >>
     jobs:
-      - sanity: &filters-always
-          filters:
-            tags:
-              only: /.*/
-      - echo_a:
+      - sanity:
+          <<: *filters-always
+      - echo_b:
           <<: *filters-always
           requires:
             - sanity
