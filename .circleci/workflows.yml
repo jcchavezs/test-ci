@@ -5,6 +5,10 @@ parameters:
     type: boolean
     default: false
 
+  second_condition:
+    type: boolean
+    default: false
+
 executors:
   build:
     docker:
@@ -32,7 +36,7 @@ jobs:
 
 workflows:
   do_1:
-    when: << pipeline.parameters.first_condition >>
+    when: << pipeline.parameters.second_condition >>
     jobs:
       - sanity: &filters-always
           filters:
@@ -45,7 +49,7 @@ workflows:
 
   do_2:
     when:
-      not: << pipeline.parameters.first_condition >>
+      not: << pipeline.parameters.second_condition >>
     jobs:
       - sanity:
           <<: *filters-always
