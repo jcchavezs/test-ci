@@ -1,0 +1,47 @@
+version: 2.1
+
+parameters:
+  first_condition:
+    type: boolean
+    default: false
+
+workflows:
+  version: 2
+
+  do_1:
+    when: << pipeline.parameters.first_condition >>
+    jobs:
+      - sanity: &filters-always
+          filters:
+            tags:
+              only: /.*/
+      - echo_a:
+          <<: *filters-always
+          requires:
+            - sanity
+
+  do_2:
+    when:
+      not: << pipeline.parameters.first_condition >>
+    jobs:
+      - sanity: &filters-always
+          filters:
+            tags:
+              only: /.*/
+      - echo_a:
+          <<: *filters-always
+          requires:
+            - sanity
+jobs:
+  sanity:
+    steps:
+      - run: echo "Running sanity"
+  echo_a:
+    description: A
+    steps:
+      - run: echo "A"
+
+  echo_b:
+    description: B
+    steps:
+      - run: echo "B"
