@@ -6,7 +6,7 @@ workflows:
   setup:
     jobs:
       - path-filtering/filter:
-          base-revision: master
+          base-revision: main
           mapping: |
             src/.* first_condition true
             docs/.* first_condition false
