@@ -6,8 +6,6 @@ parameters:
     default: false
 
 workflows:
-  version: 2
-
   do_1:
     when: << pipeline.parameters.first_condition >>
     jobs:
