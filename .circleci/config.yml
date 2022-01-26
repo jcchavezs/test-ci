@@ -8,6 +8,6 @@ workflows:
       - path-filtering/filter:
           base-revision: main
           mapping: |
-            src/.* first_condition true
+            src/.*  first_condition true
             docs/.* first_condition false
           config-path: .circleci/workflows.yml
