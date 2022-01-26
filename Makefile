@@ -1,4 +1,7 @@
-TIMESTAMP=$$(date +%Y%m%d%H%M%S)
+TIMESTAMP=$(echo "$$(date +%Y%m%d%H%M%S)")
+
+timestamp:
+	echo $(TIMESTAMP)
 
 try:
 	@git add -u
