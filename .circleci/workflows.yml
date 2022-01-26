@@ -5,6 +5,31 @@ parameters:
     type: boolean
     default: false
 
+executors:
+  build:
+    docker:
+      - image: cimg/base:2021.04
+
+jobs:
+  sanity:
+    docker:
+      # next-gen ubuntu image
+      - image: cimg/base:2021.04
+    steps:
+      - run: echo "Running sanity"
+
+  echo_a:
+    executor: build
+    description: A
+    steps:
+      - run: echo "A"
+
+  echo_b:
+    executor: build
+    description: B
+    steps:
+      - run: echo "B"
+
 workflows:
   do_1:
     when: << pipeline.parameters.first_condition >>
@@ -30,17 +55,3 @@ workflows:
           <<: *filters-always
           requires:
             - sanity
-jobs:
-  sanity:
-    steps:
-      - run: echo "Running sanity"
-
-  echo_a:
-    description: A
-    steps:
-      - run: echo "A"
-
-  echo_b:
-    description: B
-    steps:
-      - run: echo "B"
