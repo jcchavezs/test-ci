@@ -6,6 +6,9 @@ workflows:
   setup:
     jobs:
       - path-filtering/filter:
+          filters:
+            tags:
+              only: /^.*$/
           base-revision: main
           mapping: |
             src/.*  first_condition true
